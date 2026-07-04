@@ -1,56 +1,123 @@
-# 🚀 AlgoForge
+# 🌌 AlgoVerse
 
-Welcome to AlgoForge — a growing collection of Data Structures, Algorithms, and Problem Solving solutions crafted through continuous learning, practice, and exploration.
+> *Exploring the universe of Data Structures, Algorithms, and SQL — one problem at a time.*
 
-This repository serves as my personal coding journal where I document solutions to algorithmic challenges from platforms such as LeetCode, HackerRank, GeeksforGeeks, Coding Ninjas, and other competitive programming sources.
+![Java](https://img.shields.io/badge/Language-Java-orange?style=for-the-badge)
+![SQL](https://img.shields.io/badge/Database-SQL-blue?style=for-the-badge)
+![DSA](https://img.shields.io/badge/Focus-Data%20Structures%20%26%20Algorithms-green?style=for-the-badge)
 
-## 📚 What You'll Find Here
+---
 
-- Data Structures Implementations
-- Dynamic Programming Problems
-- Arrays and Strings
+## 🚀 About AlgoVerse
+
+**AlgoVerse** is my personal repository dedicated to mastering **Data Structures & Algorithms**, **SQL**, and **technical interview preparation**.
+
+This repository serves as a structured collection of coding challenges, algorithm implementations, and database solutions from platforms such as:
+
+- LeetCode
+- GeeksforGeeks
+- HackerRank
+
+Each solution reflects my journey of continuous learning, problem-solving, and strengthening computer science fundamentals.
+
+---
+
+## 🎯 Objectives
+
+- Strengthen problem-solving skills
+- Master Data Structures and Algorithms
+- Improve coding interview preparation
+- Learn optimization techniques
+- Build consistency in daily practice
+- Develop strong analytical thinking
+
+---
+
+## 📂 Repository Structure
+
+```text
+AlgoVerse
+│
+├── Arrays
+├── BinarySearch
+├── DP
+├── Graphs
+├── LinkedList
+├── Recursion
+├── SlidingWindow
+├── Stack
+├── Strings
+├── Trees
+├── SQL
+│
+└── README.md
+```
+
+---
+
+## 🧠 Topics Covered
+
+### Data Structures
+
+- Arrays
+- Strings
 - Linked Lists
-- Stacks and Queues
-- Trees and Binary Trees
+- Stacks
+- Queues
+- Trees
 - Binary Search Trees
-- Graph Algorithms
-- Recursion and Backtracking
-- Sliding Window Techniques
+- Graphs
+- HashMaps
+- HashSets
+
+### Algorithms
+
+- Binary Search
+- Recursion
+- Backtracking
+- Sliding Window
+- Two Pointers
+- Prefix Sum
+- Dynamic Programming
 - Greedy Algorithms
-- Bit Manipulation
-- Hashing
-- Searching and Sorting
-- Two Pointer Techniques
-- Prefix Sum Problems
-- Competitive Programming Solutions
+- Graph Traversals
+- Sorting Techniques
 
-## 🎯 Purpose
+### SQL
 
-The goal of this repository is not only to store accepted solutions but also to improve problem-solving skills, strengthen algorithmic thinking, and maintain consistency in coding practice.
+- Basic Queries
+- Joins
+- Aggregations
+- Group By & Having
+- Window Functions
+- Subqueries
+- Common Table Expressions (CTEs)
 
-Each solution represents a step toward becoming a better software engineer by understanding different approaches, optimizing time and space complexity, and learning industry-standard coding practices.
+---
 
-## 📈 Learning Journey
+## 💡 Learning Philosophy
 
-This repository is continuously updated as I solve new problems and explore advanced concepts. Over time, it will evolve into a comprehensive collection of coding patterns, interview preparation resources, and algorithmic techniques.
+> "The goal is not to memorize solutions, but to recognize patterns."
 
-## 🛠️ Technologies Used
+Every problem solved improves:
 
-- Java
-- Object-Oriented Programming
-- Data Structures & Algorithms
-- Git & GitHub
+- Algorithmic Thinking
+- Coding Efficiency
+- Optimization Skills
+- Interview Readiness
+- Logical Reasoning
 
-## 🌟 Why This Repository?
+---
 
-- Track coding progress
-- Prepare for technical interviews
-- Build strong DSA foundations
-- Practice optimization techniques
-- Learn multiple approaches to solving problems
+## 👩‍💻 Author
 
-## 💡 Motto
+### Shivangi Srivastava
 
-"Consistency beats intensity. One problem solved today is one step closer to mastery."
+Computer Science Engineering Student  
+DSA Enthusiast | Problem Solver | Aspiring Software Engineer
 
-Happy Coding! 🚀
+---
+
+⭐ **If you find this repository useful, consider giving it a star!**
+
+*"Consistency compounds. Small improvements every day lead to extraordinary results."*
