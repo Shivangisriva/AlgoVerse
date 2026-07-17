@@ -1,0 +1,52 @@
+/*
+class Node {
+    int data;
+    Node left, right;
+
+    public Node(int data){
+        this.data = data;
+    }
+}
+*/
+class Solution {
+    
+   // IT IS A BIANRY TREE NOT A BST 
+   
+    public static int findMax(Node root) {
+ Queue<Node> q = new LinkedList<>();
+if(root == null)
+return Integer.MIN_VALUE;
+q.offer(root);
+int max = Integer.MIN_VALUE;
+while(!q.isEmpty())
+{
+    Node curr = q.poll();
+    max = Math.max(max , curr.data);
+    if(curr.left!=null)
+    q.offer(curr.left);
+    if(curr.right!=null)
+    q.offer(curr.right);
+}
+return max;
+}
+      
+
+    public static int findMin(Node root) {
+         Queue<Node> q = new LinkedList<>();
+if(root == null)
+return Integer.MAX_VALUE;
+q.offer(root);
+int min = Integer.MAX_VALUE;
+while(!q.isEmpty())
+{
+    Node curr = q.poll();
+    min = Math.min(min , curr.data);
+    if(curr.left!=null)
+    q.offer(curr.left);
+    if(curr.right!=null)
+    q.offer(curr.right);
+}
+return min;
+}
+        // code here
+    }
