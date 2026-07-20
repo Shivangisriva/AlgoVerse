@@ -1,0 +1,53 @@
+    /*
+Variable                 	Meaning
+prev	        Previous node in inorder traversal
+first	        First incorrect node
+middle	        Node involved in first violation
+last	        Node involved in second violation
+first + middle	Adjacent swap case
+first + last	Non-adjacent swap case
+    */
+    class Solution {
+     TreeNode first, middle,last, prev;
+    public void recoverTree(TreeNode root) {
+         prev = new TreeNode(Integer.MIN_VALUE);
+        first=null ;
+        middle=null;
+        last = null;
+        inorder(root);
+        if (first != null && last != null) 
+        {
+            int temp = first.val;
+            first.val = last.val;
+            last.val = temp;
+        }
+        else if (first != null && middle != null) 
+        {
+            int temp = first.val;
+            first.val = middle.val;
+            middle.val = temp;
+        }
+    }
+
+    void inorder(TreeNode root)
+    {
+        if(root == null)
+        return;
+        //left
+        inorder(root.left);
+        //root
+        if(prev!=null && prev.val > root.val)
+        {
+            if(first == null)
+            {
+                first = prev;
+                middle = root;
+            }
+            else
+            last = root;
+        }
+        prev =root;
+        //right
+        inorder(root.right);
+    }
+}
