@@ -1,0 +1,24 @@
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        //math and  freq problem
+        //(maxFreq-1)*(n+1)+count_max
+        int max = Integer.MIN_VALUE;
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(Character s : tasks)
+        {
+      map.put(s,map.getOrDefault(s,0)+1);
+        }
+        for(Map.Entry<Character, Integer> entry: map.entrySet())
+        {
+            if(entry.getValue() > max)
+            max = entry.getValue();
+        }
+        int count_Freq = 0;
+        for(Map.Entry<Character, Integer> entry: map.entrySet())
+        {
+            if(entry.getValue() == max)
+            count_Freq++;
+        }
+        return Math.max(tasks.length, (max - 1) * (n + 1) + count_Freq);
+            }
+}
