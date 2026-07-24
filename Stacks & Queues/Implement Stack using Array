@@ -1,0 +1,98 @@
+class StackArray {
+    private int[] arr;
+    private int top;
+    private int capacity;
+
+    // Constructor
+    public StackArray(int size) {
+        capacity = size;
+        arr = new int[capacity];
+        top = -1;
+    }
+
+    // Push operation
+    public void push(int data) {
+        if (isFull()) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+
+        arr[++top] = data;
+    }
+
+    // Pop operation
+    public int pop() {
+        if (isEmpty()) {
+            System.out.println("Stack Underflow");
+            return -1;
+        }
+
+        return arr[top--];
+    }
+
+    // Peek operation
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+
+        return arr[top];
+    }
+
+    // Check if stack is empty
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Check if stack is full
+    public boolean isFull() {
+        return top == capacity - 1;
+    }
+
+    // Return size of stack
+    public int size() {
+        return top + 1;
+    }
+
+    // Display stack elements
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return;
+        }
+
+        System.out.print("Stack: ");
+        for (int i = top; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        StackArray stack = new StackArray(5);
+
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        stack.display();
+
+        System.out.println("Top Element: " + stack.peek());
+
+        System.out.println("Popped Element: " + stack.pop());
+
+        stack.display();
+
+        System.out.println("Current Size: " + stack.size());
+
+        stack.push(40);
+        stack.push(50);
+        stack.push(60);
+
+        stack.display();
+    }
+}
