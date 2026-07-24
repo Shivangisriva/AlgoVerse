@@ -1,0 +1,103 @@
+class ArrayQueue {
+    private int[] arr;
+    private int front;
+    private int rear;
+    private int capacity;
+
+    public ArrayQueue(int size) {
+        capacity = size;
+        arr = new int[capacity];
+        front = 0;
+        rear = -1;
+    }
+
+    // Enqueue
+    public void enqueue(int data) {
+        if (isFull()) {
+            System.out.println("Queue Overflow");
+            return;
+        }
+
+        arr[++rear] = data;
+    }
+
+    // Dequeue
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue Underflow");
+            return -1;
+        }
+
+        return arr[front++];
+    }
+
+    // Peek
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+
+        return arr[front];
+    }
+
+    // Check Empty
+    public boolean isEmpty() {
+        return front > rear;
+    }
+
+    // Check Full
+    public boolean isFull() {
+        return rear == capacity - 1;
+    }
+
+    // Size
+    public int size() {
+        if (isEmpty())
+            return 0;
+
+        return rear - front + 1;
+    }
+
+    // Display
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is Empty");
+            return;
+        }
+
+        System.out.print("Queue: ");
+
+        for (int i = front; i <= rear; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        System.out.println();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayQueue q = new ArrayQueue(5);
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        q.display();
+
+        System.out.println("Front Element: " + q.peek());
+
+        System.out.println("Removed: " + q.dequeue());
+
+        q.display();
+
+        System.out.println("Current Size: " + q.size());
+
+        q.enqueue(40);
+        q.enqueue(50);
+
+        q.display();
+    }
+}
