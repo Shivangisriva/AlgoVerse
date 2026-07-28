@@ -1,0 +1,19 @@
+class Solution {
+    static ArrayList<Integer> nextSmallerEle(int[] arr) {
+        // code here
+        Stack<Integer> st = new Stack<>();
+        int n = arr.length;
+        ArrayList<Integer>res = new ArrayList<>(Collections.nCopies(n,0));
+        for(int i = n-1;i>=0 ; i--)
+        {
+            while(!st.isEmpty() && st.peek()>= arr[i])
+            st.pop();
+            
+            int nse = (st.isEmpty())?-1:st.peek();
+            res.set(i , nse);
+            
+            st.push(arr[i]);
+        }
+        return res;
+    }
+}
