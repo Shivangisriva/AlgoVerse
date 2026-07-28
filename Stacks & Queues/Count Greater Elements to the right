@@ -1,0 +1,38 @@
+import java.util.*;
+
+class Solution {
+    public static int[] countGreater(int[] arr, int[] indices) {
+
+        int n = arr.length;
+        int[] greaterCount = new int[n];
+
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+
+        // traverse from right
+        for (int i = n - 1; i >= 0; i--) {
+
+            // get strictly greater elements
+            Map<Integer, Integer> greater =
+                    map.tailMap(arr[i] + 1, true);
+
+            int count = 0;
+            for (int freq : greater.values()) {
+                count += freq;
+            }
+
+            greaterCount[i] = count;
+
+            // insert current element
+            map.put(arr[i],
+                    map.getOrDefault(arr[i], 0) + 1);
+        }
+
+        // answer queries
+        int[] res = new int[indices.length];
+        for (int i = 0; i < indices.length; i++) {
+            res[i] = greaterCount[indices[i]];
+        }
+
+        return res;
+    }
+}
