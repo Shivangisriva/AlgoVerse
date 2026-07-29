@@ -1,0 +1,84 @@
+import java.util.Stack;
+
+class Solution {
+    public long subArrayRanges(int[] arr) {
+        return submax(arr) - submin(arr);
+    }
+        //As the maximum of some subarrays.
+//      As the minimum of some subarrays.
+    static long submax(int[] arr) {
+        int n = arr.length;
+        int[] nge = nextGreater(arr);
+        int[] pge = previousGreater(arr);
+        long tot = 0;
+        for (int i = 0; i < n; i++) {
+            long left = i - pge[i];
+            long right = nge[i] - i;
+            long cont = left * (long) arr[i] * right;
+            tot += cont;
+        }
+        return tot;
+    }
+
+    static long submin(int[] arr) {
+        int n = arr.length;
+        int[] nse = nextSmaller(arr);
+        int[] pse = previousSmaller(arr);   // FIXED VERSION USED HERE
+        long tot = 0;
+        for (int i = 0; i < n; i++) {
+            long left = i - pse[i];
+            long right = nse[i] - i;
+            long cont = left * (long) arr[i] * right;
+            tot += cont;
+        }
+        return tot;
+    }
+
+    static int[] nextGreater(int[] arr) {
+        int n = arr.length;
+        Stack<Integer> st = new Stack<>();
+        int[] nge = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[st.peek()] <= arr[i]) st.pop();
+            nge[i] = st.isEmpty() ? n : st.peek();
+            st.push(i);
+        }
+        return nge;
+    }
+
+    static int[] previousGreater(int[] arr) {
+        int n = arr.length;
+        Stack<Integer> st = new Stack<>();
+        int[] pge = new int[n];
+        for (int i = 0; i < n; i++) {
+            while (!st.isEmpty() && arr[st.peek()] < arr[i]) st.pop();
+            pge[i] = st.isEmpty() ? -1 : st.peek();
+            st.push(i);
+        }
+        return pge;
+    }
+
+    static int[] nextSmaller(int[] arr) {
+        int n = arr.length;
+        Stack<Integer> st = new Stack<>();
+        int[] nse = new int[n];
+        for (int i = n - 1; i >= 0; i--) {
+            while (!st.isEmpty() && arr[st.peek()] >= arr[i]) st.pop();
+            nse[i] = st.isEmpty() ? n : st.peek();
+            st.push(i);
+        }
+        return nse;
+    }
+
+    static int[] previousSmaller(int[] arr) {
+        int n = arr.length;
+        Stack<Integer> st = new Stack<>();
+        int[] pse = new int[n];
+        for (int i = 0; i < n; i++) {
+            while (!st.isEmpty() && arr[st.peek()] > arr[i]) st.pop();
+            pse[i] = st.isEmpty() ? -1 : st.peek();
+            st.push(i);
+        }
+        return pse;
+    }
+}
