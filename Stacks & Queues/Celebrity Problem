@@ -1,0 +1,33 @@
+class Solution {
+    public int celebrity(int M[][]) {
+        int n = M.length;
+        int i = 0, j = n - 1;
+
+        // Step 1: Find the candidate
+        while (i < j) {
+            if (M[i][j] == 1) {
+                // i knows j → i cannot be celebrity
+                i++;
+            } else {
+                // i does not know j → j cannot be celebrity
+                j--;
+            }
+        }
+
+        // i (or j) is the candidate
+        int candidate = i;
+
+        // Step 2: Verify candidate
+        for (int k = 0; k < n; k++) {
+            if (k == candidate) continue;
+
+            // Candidate should not know anyone
+            if (M[candidate][k] == 1) return -1;
+
+            // Everyone should know candidate
+            if (M[k][candidate] == 0) return -1;
+        }
+
+        return candidate;
+    }
+}
