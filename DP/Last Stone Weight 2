@@ -1,0 +1,38 @@
+class Solution {
+    public int lastStoneWeightII(int[] stones) {
+        /*
+        subset1 = s , subset2 = total - s
+        |subset1 - subset2| = |s - (total-s)| = |total - 2s|
+    */
+    int tot = 0;
+    for(int val : stones)
+    {
+        tot+= val;
+    }
+    int n = stones.length;
+    int target = tot/2;
+    int dp[][] = new int[n][target+1];
+
+    for(int row[] : dp)
+    Arrays.fill(row , -1);
+
+   int s =  helper(stones , 0  ,target , dp);
+   return tot - 2*s;
+    }
+    int helper( int stones[] , int ind , int target , int dp[][])
+    {
+    
+        if(ind == stones.length)
+        {
+return 0;
+        } 
+    if(dp[ind][target]!= -1)
+    return dp[ind][target];
+        int npick = helper(stones , ind+1 , target , dp);
+        int pick = 0;
+        if(stones[ind] <= target)
+         pick =  stones[ind] + helper(stones , ind+1  , target - stones[ind] , dp);
+        return dp[ind][target] = Math.max(pick , npick);
+    }
+
+}
