@@ -1,0 +1,29 @@
+class Solution {
+    public int myAtoi(String s) {
+        return helper(s.trim() , 0 , 1 , 0);// 1 = + , (0 = -)
+    }
+    int helper(String s , long res , int sign , int ind)//res is long
+    {
+        if(ind == s.length())
+        return (int)(res*sign);//long->int
+
+    char ch = s.charAt(ind);
+    if(ind == 0 && (ch == '-'|| ch=='+'))
+    {
+        if(ch == '-')
+        sign = -1;
+      return helper(s,res,sign,ind+1);
+    }
+    if(!Character.isDigit(ch))
+    return (int)(res*sign);
+
+    int dig = ch-'0';
+    res = res*10+dig;
+    if(res*sign >= Integer.MAX_VALUE)
+    return Integer.MAX_VALUE;
+    if(res*sign <= Integer.MIN_VALUE)
+    return Integer.MIN_VALUE;
+    
+   return helper(s,res,sign,ind+1);
+    }
+}
