@@ -1,0 +1,18 @@
+class Solution {
+    long mod = 1000000007;//remember 1(8 times 0)7
+    public int countGoodNumbers(long n) {
+        long oddPos = n/2;     //thisss
+        long evenPos = (n+1)/2;   //thisss
+        return (int)((helper(4,oddPos)*helper(5,evenPos))%mod); // (4^odd * 5^even)
+    }
+    long helper(int x , long n)
+    {
+        if(n==0)
+        return 1;
+        long half = helper(x,n/2);
+        if(n%2==0)
+        return (half*half)%mod;
+        else
+        return (((half*half)%mod)*x)%mod;
+    }
+}
