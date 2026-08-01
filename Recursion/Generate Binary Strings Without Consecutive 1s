@@ -1,0 +1,19 @@
+class Solution {
+    static void generate(int n , String curr , ArrayList<String> list)
+    {
+        if(curr.length() == n)
+        {
+            list.add(curr);
+            return;
+        }
+        generate(n, curr + "0" , list);
+        if(curr.isEmpty() || curr.charAt(curr.length()-1) != '1')
+        generate(n , curr + "1" , list);
+    }
+    public List<String> generateBinaryStrings(int n) {
+  
+        ArrayList<String> list = new ArrayList<>();
+        generate(n , "" , list);
+        return list;
+    }
+}
