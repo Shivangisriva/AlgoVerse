@@ -1,1 +1,19 @@
-
+class Solution {
+    public int findMax(int n, int[] a, int[] b, int[] k) {
+        // code here
+        int diff[] = new int[n+1];
+        for(int i = 0 ; i < k.length ; i++)
+        {
+            diff[a[i]]+=k[i];
+            if(b[i]+1 < diff.length)
+            diff[b[i]+1]-=k[i];
+        }
+        int max = 0 , curr = 0;
+        for(int j= 0; j<diff.length ; j++)
+        {
+            curr+=diff[j];
+            max = Math.max(max , curr);
+        }
+        return max;
+    }
+}
