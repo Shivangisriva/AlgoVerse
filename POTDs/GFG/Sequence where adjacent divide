@@ -1,0 +1,33 @@
+class Solution {
+    int dp[][];
+    public int count(int n, int m) {
+        // code here
+        dp = new int[n][m+1];
+
+        for(int i=0;i<n;i++)
+            Arrays.fill(dp[i], -1);
+            
+       int count = 0;
+       for(int i = 1 ; i<= m ; i++)
+       {
+           count+=helper(1 , i , n ,m);
+       }
+       return count;
+    }
+    int helper(int index , int prev , int n , int m)
+    {
+        if(index == n)
+        return 1;
+        
+        if(dp[index][prev] != -1)
+            return dp[index][prev];
+            
+        int cnt = 0;
+        for(int curr = 1; curr<= m ; curr++)
+        {
+            if(curr%prev == 0 || prev % curr == 0)
+            cnt+= helper(index+1 , curr , n, m);
+        }
+        return dp[index][prev] = cnt;
+    }
+}
