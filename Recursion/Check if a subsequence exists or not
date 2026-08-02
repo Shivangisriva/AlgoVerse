@@ -1,0 +1,43 @@
+import java.util.*;
+
+class Solution {
+    boolean find(int ind, int[] nums, int target, ArrayList<Integer> ds, int sum) {
+        // Base case
+        if (ind == nums.length) {
+            if (sum == target) {
+                System.out.println(ds);   // Print the first subsequence found
+                return true;             
+            }
+            return false;
+        }
+
+        // Choose current element
+        ds.add(nums[ind]);
+        if (find(ind + 1, nums, target, ds, sum + nums[ind])) {
+            return true;  // already found, propagate stop upwards
+        }
+
+        // Backtrack
+        ds.remove(ds.size() - 1);
+
+        // Don’t choose current element
+        if (find(ind + 1, nums, target, ds, sum)) {
+            return true;
+        }
+
+        return false; // nothing found
+    }
+
+    public void printOneSubsequence(int[] nums, int k) {
+        find(0, nums, k, new ArrayList<>(), 0);
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] nums = {1, 2, 1};
+        int k = 2;
+        sol.printOneSubsequence(nums, k);  
+        // Output (example): [1, 1]
+        // Or could be [2], depending on traversal order
+    }
+}
