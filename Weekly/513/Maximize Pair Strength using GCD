@@ -1,0 +1,25 @@
+class Solution {
+    long gcdFind(int a , int b)
+    {
+        if(b == 0) return a;
+        return gcdFind(b , a%b);
+    }
+    public long maxPairStrength(int[] nums) {
+        long max = 0;
+        int n = nums.length;
+        for(int i = 0 ; i<n ; i++)
+            {
+                long pro = 0;
+                long gcd = 0;
+                for(int j = i+1; j<n ; j++)
+                    {
+                        
+                        pro = 1L * nums[i]*nums[j];
+                        gcd = gcdFind(nums[i] , nums[j]);
+                        long strength = pro/ (gcd*gcd);
+                        max = Math.max(max , strength);
+                    }
+            }
+        return max;
+    }
+}©leetcode
