@@ -1,0 +1,31 @@
+import java.util.*;
+class Solution {
+    int count(int ind, int[] nums, int target, int sum) {
+        // Base case
+        if (ind == nums.length) {
+            if (sum == target) return 1; // ✅ valid subsequence
+            return 0;
+        }
+
+        //  Include nums[ind]
+        int left = count(ind + 1, nums, target, sum + nums[ind]);
+
+        //  Exclude nums[ind]
+        int right = count(ind + 1, nums, target, sum);
+
+        return left + right; // total count
+    }
+
+    public int countSubsequencesWithSumK(int[] nums, int k) {
+        return count(0, nums, k, 0);
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] nums = {1, 2, 1};
+        int k = 2;
+
+        int result = sol.countSubsequencesWithSumK(nums, k);
+        System.out.println("Count = " + result);
+    }
+}
