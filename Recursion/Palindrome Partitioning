@@ -1,0 +1,36 @@
+class Solution {
+    boolean isPalin(String s , int S, int e )
+    {
+        while(S<e)
+        {
+            if(s.charAt(S)!=s.charAt(e))
+            return false;
+            S++;
+            e--;
+        }
+        return true;
+    }
+    void func(int ind , String s , List<List<String>> res , List<String> ans)
+    {
+        if(ind == s.length())
+        {
+       res.add(new ArrayList<>(ans));
+       return;
+        }
+        for(int i = ind ; i<s.length();i++)
+        {
+            if(isPalin(s , ind , i))
+            {
+            ans.add(s.substring(ind , i+1));
+            func(i+1,s,res,ans);
+            ans.remove(ans.size()-1);
+            }
+        }
+    }
+    public List<List<String>> partition(String s) {
+         List<List<String>> res = new ArrayList<>();
+          List<String> ans = new ArrayList<>();
+          func(0 ,s , res  , ans);
+          return res;
+    }
+}
