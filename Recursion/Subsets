@@ -1,0 +1,26 @@
+class Solution {
+void find(int ind, List<List<Integer>>ans ,ArrayList<Integer> ds, int nums[])
+    {
+if(ind == nums.length)
+{
+ans.add( new ArrayList<>(ds));
+return;
+}
+
+  // 1️⃣ CHOOSE (include nums[ind])
+        ds.add(nums[ind]);
+        // 2️⃣ CALL (explore with current element chosen)
+        find(ind + 1, ans, ds, nums);
+        // 3️⃣ REMOVE (backtrack)
+        ds.remove(ds.size() - 1);
+
+        // 4️⃣ CALL (explore without choosing current element)
+        find(ind + 1, ans, ds, nums);
+
+    }
+    public List<List<Integer>> subsets(int[] nums) {
+       List<List<Integer>> ans = new ArrayList<>();
+       find(0, ans , new ArrayList<>(), nums);
+       return ans;
+    }
+}
