@@ -1,0 +1,41 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        if (digits == null || digits.isEmpty()) {
+            return new ArrayList<>();
+        }
+    List<String> result = new ArrayList<>(); // create list here
+        // Map for digit -to-letters mapping
+        Map<Character, String> digitToLetters = new HashMap<>();
+        digitToLetters.put('2', "abc");
+        digitToLetters.put('3', "def");
+        digitToLetters.put('4', "ghi");
+        digitToLetters.put('5', "jkl");
+        digitToLetters.put('6', "mno");
+        digitToLetters.put('7', "pqrs");
+        digitToLetters.put('8', "tuv");
+        digitToLetters.put('9', "wxyz");
+
+         letterComb("", digits, digitToLetters, result);
+         return result;
+    }
+
+    private void letterComb(String prefix, String digits, Map<Character, String> digitToLetters, List<String> result) {
+        if (digits.isEmpty()) {
+            // Base case: return a list with the accumulated string
+            result.add(prefix);
+            return;
+        }
+
+        // Get the first digit and its corresponding letters
+        char digit = digits.charAt(0);
+        String letters = digitToLetters.get(digit);
+       
+
+        // Loop through the letters for the current digit
+        for (char letter : letters.toCharArray()) {
+            letterComb(prefix + letter , digits.substring(1), digitToLetters, result);
+        }
+
+      
+    }
+}
