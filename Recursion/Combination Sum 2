@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+      List<List<Integer>> res= new ArrayList<>();
+        helper(0,candidates,target,0,res,new ArrayList<>());
+        return res;
+    }
+      void helper(int ind,int[]arr , int target,int sum ,List<List<Integer>> res , ArrayList<Integer>ds)
+    {
+              if(sum == target) {
+            res.add(new ArrayList<>(ds));
+            return;
+        }
+
+        if(sum > target)
+            return;
+
+            for(int i = ind;i<arr.length; i++)//thisss manages backtracking  and index conditions
+            {
+                if(i>ind && arr[i]==arr[i-1])//skip duplicates ONLY on SAME LEVEL.
+                continue;
+                
+        ds.add(arr[i]);
+        helper(i+1,arr,target,sum+arr[i],res,ds);//no ind+1 as in
+        //subsequence sum = k ,so we need to check sum>target 
+        ds.remove(ds.size()-1);
+        }
+    }   
+}
