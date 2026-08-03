@@ -1,0 +1,25 @@
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> list = new ArrayList<>();
+        func(1 , k , n ,list , new ArrayList<>());
+        return list;
+    }
+    void func(int ind , int k , int n ,List<List<Integer>> ans , List<Integer> ds)
+    {
+        if(ds.size() == k)
+        {
+            if(n == 0)
+            {
+             ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        for(int i = ind ; i<=9;i++)
+        {
+            if(i>n) break;
+            ds.add(i);
+            func(i+1,k , n-i,ans ,ds);
+            ds.remove(ds.size()-1);
+        }
+    }
+}
