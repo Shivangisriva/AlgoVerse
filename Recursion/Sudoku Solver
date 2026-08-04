@@ -1,0 +1,59 @@
+class Solution {
+    private boolean solve(char[][] board) {
+        int n = board.length;
+
+        // Find an empty cell
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                if (board[row][col] == '.') {
+                    // Try all numbers from '1' to '9'
+                    for (char num = '1'; num <= '9'; num++) {
+                        if (isSafe(board, row, col, num)) {
+                            board[row][col] = num; 
+                            if (solve(board)) {
+                                return true;
+                            }
+
+                            // Backtrack
+                            board[row][col] = '.';
+                        }
+                    }
+
+                    // If no number can be placed, return false
+                    return false;
+                }
+            }
+        }
+        // If no empty cells are found, the board is solved
+        return true;
+    }
+
+    private boolean isSafe(char[][] board, int row, int col, char num) {
+        int n = board.length;
+        int sqrt = (int) Math.sqrt(n);
+        int startRow = row - row % sqrt;
+        int startCol = col - col % sqrt;
+
+        // Check the row and column
+        for (int i = 0; i < n; i++) {
+            if (board[row][i] == num || board[i][col] == num) {
+                return false;
+            }
+        }
+
+        // Check the subgrid
+        for (int r = startRow; r < startRow + sqrt; r++) {
+            for (int c = startCol; c < startCol + sqrt; c++) {
+                if (board[r][c] == num) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public void solveSudoku(char[][] board) {
+        solve(board); // Start solving the Sudoku puzzle
+    }
+}
