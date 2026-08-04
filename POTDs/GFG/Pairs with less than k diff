@@ -1,0 +1,20 @@
+class Solution {
+    public static int countPairs(int arr[], int k) {
+        // code here
+        int cnt = 0;
+        Arrays.sort(arr);
+        int n = arr.length;
+        int left = 0 , rt = 0;
+        while(rt< n)
+        {
+            if((arr[rt] - arr[left]) < k)
+        {
+            cnt+= rt-left;
+            rt++;
+        }
+        else
+       left++;
+        }
+        return cnt;
+    }
+}
