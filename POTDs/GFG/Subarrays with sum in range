@@ -1,0 +1,22 @@
+class Solution {
+    public int countSubarray(int[] arr, int l, int r) {
+        // code here
+     int ans = countAtmost( arr , r) - countAtmost(arr , l-1);
+     return ans;
+    }
+    int countAtmost(int arr[]  , int k)
+    {
+        int left = 0 , sum = 0;
+        int cnt = 0;
+        for(int rt = 0; rt < arr.length ; rt++)
+        {
+            sum+= arr[rt];
+            while(sum > k)
+            {
+                sum-=arr[left++];
+            }
+            cnt+= rt-left+1;
+        }
+        return cnt;
+    }
+}
