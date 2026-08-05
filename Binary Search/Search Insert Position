@@ -1,0 +1,17 @@
+class Solution {
+    public int searchInsert(int[] arr, int target) {
+     int start =0, end = arr.length-1,mid=0 , ans =arr.length;// just made ans = len of array
+     // lower bound
+     while(start<= end)
+     {
+        mid = start+(end-start)/2;
+        if(arr[mid]>=target){
+            ans = mid;
+        end = mid-1;
+        }
+        else
+       start = mid+1;
+     }
+     return ans;  
+    }
+}
