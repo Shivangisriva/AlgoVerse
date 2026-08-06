@@ -1,0 +1,20 @@
+class Solution {
+    public int countMinOperations(int arr[]) {
+         int setBits = 0;
+        int maxBitPos = 0;
+
+ /*
+    Answer = (Total set bits in all array elements) + (Maximum highest set bit position among all elements)
+*/
+        for (int num : arr) {
+
+            setBits += Integer.bitCount(num);
+
+            if (num > 0) {
+                int bitPos = 31 - Integer.numberOfLeadingZeros(num);
+                maxBitPos = Math.max(maxBitPos, bitPos);
+            }
+        }
+        return setBits + maxBitPos;
+    }
+}
