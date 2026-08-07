@@ -133,16 +133,6 @@ This repository is designed to prepare for:
 - Coding Assessments
 - Technical Interviews
 
-Companies targeted:
-
-- Microsoft
-- Google
-- Amazon
-- JP Morgan
-- Adobe
-- Cisco
-- Other product-based organizations
-
 ---
 
 # 🛠️ Tech Stack
