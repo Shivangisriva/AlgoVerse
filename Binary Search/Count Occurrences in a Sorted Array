@@ -1,0 +1,5 @@
+Find the first occurrence index of the target number using binary search.
+
+Find the last occurrence index of the target number using binary search.
+
+The count is lastIndex - firstIndex + 1.
