@@ -1,0 +1,58 @@
+------------------------------------------------MEMOIZATION----------------------------------------------------
+class Solution {
+    int dp[];
+    public int rob(int[] nums) {
+     int n = nums.length;
+     if(n==1)
+     return nums[0];
+     dp = new int[n];
+     Arrays.fill(dp,-1);
+     int firstexclu = helper(1 ,n-1, nums);  
+      Arrays.fill(dp,-1);
+     int lastexclu = helper(0,n-2 , nums);
+     return Math.max(firstexclu , lastexclu); 
+    }
+    int helper(int ind ,int end, int nums[])
+    {
+        if(ind>end)
+        {
+            return 0;
+        }
+        if(dp[ind]!=-1)
+        return dp[ind];
+        int pick = nums[ind]+helper(ind+2,end,nums);
+        int npick = helper(ind+1 ,end, nums);
+        return dp[ind] = Math.max(pick ,npick);
+    }
+}
+------------------------------------------------TABULATION----------------------------------------------------
+class Solution {
+    int dp[];
+    public int rob(int[] nums) {
+     int n = nums.length;
+     if(n==1)
+     return nums[0];
+   
+     int firstexclu = helper(1 ,n-1, nums);  
+     int lastexclu = helper(0,n-2 , nums);
+     return Math.max(firstexclu , lastexclu); 
+    }
+    int helper(int start ,int end, int nums[])
+    {
+        int len =end-start+1;//thisss
+       dp = new int[len];
+
+     dp[0] = nums[start];//thisssssss
+     if(len == 1)
+    return dp[0];
+     dp[1] = Math.max(nums[start],nums[start+1]);//thissssss
+    
+       for(int i = 2;i<len;i++)//thisss
+       {
+      int pick = nums[start+i] + dp[i-2];//thissss
+      int npick = dp[i-1];
+       dp[i] = Math.max(pick,npick);
+    }
+    return dp[len-1];//thissssss
+}
+}
