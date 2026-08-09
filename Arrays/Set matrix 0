@@ -1,0 +1,53 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+        boolean firstRow = false;
+        boolean firstCol = false;
+  
+
+  //sirst check if there is any zero in the first row and first col
+  //if yes then mark it in hte firstRow, firstCol
+  // then find zeros in the non firstRow and non firstCol area
+  //mark the correponding rowand col to be zeros
+  //check and mark zeros for the firstRow and firstCol except ofr the 00 element
+  //then change the values for the firstRow and firstCol
+
+
+
+         for (int i = 0; i < n; i++) {
+            if (matrix[i][0] == 0) firstCol = true;
+        }
+        for (int j = 0; j < m; j++) {
+            if (matrix[0][j] == 0) firstRow = true;
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;  // Mark row
+                    matrix[0][j] = 0;  // Mark column
+                }
+            }
+        }
+
+         for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+         if (firstRow) {
+            for (int j = 0; j < m; j++) matrix[0][j] = 0;
+        }
+
+        if(firstCol)
+        {
+            for(int j=0 ; j< n ; j++) matrix[j][0] = 0;
+        }
+
+
+    }
+}
