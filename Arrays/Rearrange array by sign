@@ -1,0 +1,23 @@
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int n = nums.length;
+        int len = n/2;
+        int pos[] = new int[len];
+        int neg[] = new int[len];
+        int c=0 , p= 0;
+        for(int val : nums)
+        {
+            if(val<0)
+            neg[c++] = val;
+            else
+            pos[p++] = val;
+        }
+     int i = 0 , t=0 , j =0;
+     while(i<len)
+     {
+   nums[t++] = pos[i];
+   nums[t++] = neg[i++];   
+    }
+    return nums;
+}
+}
