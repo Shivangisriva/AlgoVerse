@@ -1,0 +1,24 @@
+public static int longestSubarrayWithSumK(int[] arr, int k) {
+        int left = 0, right = 0;
+        int sum = 0, maxLen = 0;
+        int n = arr.length;
+
+        while (right < n) {
+            sum += arr[right];
+
+            // Shrink the window from the left if sum is too large
+            while (sum > k) {
+                sum -= arr[left];
+                left++;
+            }
+
+            // If sum equals K, update max length
+            if (sum == k) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+
+            right++;
+        }
+
+        return maxLen;
+    }
