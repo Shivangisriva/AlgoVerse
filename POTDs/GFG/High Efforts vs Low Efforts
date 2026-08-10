@@ -1,0 +1,29 @@
+class Solution {
+
+    int solve(int i, int[] h, int[] l, int[] dp) {
+
+        if (i < 0)
+            return 0;
+
+        if (dp[i] != -1)
+            return dp[i];
+
+        int skip = solve(i - 1, h, l, dp);
+
+        int low = l[i] + solve(i - 1, h, l, dp);
+
+        int high = h[i] + solve(i - 2, h, l, dp);
+
+        return dp[i] = Math.max(skip, Math.max(low, high));
+    }
+
+    int maxTask(int[] h, int[] l) {
+
+        int n = h.length;
+
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1);
+
+        return solve(n - 1, h, l, dp);
+    }
+}
