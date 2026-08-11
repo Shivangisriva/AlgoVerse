@@ -1,0 +1,20 @@
+public static int countSubarraysWithXorK(int[] arr, int k) {
+    Map<Integer, Integer> freq = new HashMap<>();
+    freq.put(0, 1);   // IMPORTANT
+
+    int xor = 0;
+    int count = 0;
+
+    for (int num : arr) {
+        xor ^= num;
+
+        int required = xor ^ k;
+        if (freq.containsKey(required)) {
+            count += freq.get(required);
+        }
+
+        freq.put(xor, freq.getOrDefault(xor, 0) + 1);
+    }
+
+    return count;
+}
