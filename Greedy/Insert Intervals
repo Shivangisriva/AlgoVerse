@@ -1,0 +1,30 @@
+class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+
+       List<int[]> list = new ArrayList<>(Arrays.asList(intervals));
+        list.add(newInterval);
+       return mergeIntervals(list);
+
+    }
+    int[][] mergeIntervals(List<int[]> intervals)
+    {
+        int n = intervals.size();
+                intervals.sort(Comparator.comparingInt(i->i[0]));
+        List<int[]> newarr = new ArrayList<>();
+        int newinter[] = intervals.get(0);
+        newarr.add(newinter);
+       
+
+         for(int interval[] : intervals)
+         {
+            if(interval[0] <= newinter[1])
+            newinter[1] = Math.max(newinter[1] , interval[1]);
+            else
+            {
+                newinter = interval;
+                newarr.add(newinter);
+            }
+         }
+       return newarr.toArray(new int[newarr.size()][]);
+}
+}
