@@ -1,0 +1,65 @@
+import java.util.Arrays;
+
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        // Find the range for binary search
+        int max = Arrays.stream(weights).max().getAsInt(); // Maximum weight
+        int sum = Arrays.stream(weights).sum(); // Sum of all weights
+        int low = max;
+        int high = sum;
+int ans =0;
+        // Perform binary search
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int requiredDays = finddays(weights, mid); // Days required for current capacity
+
+            // Adjust the range
+            if (requiredDays <= days) {
+                ans = mid;
+                high = mid - 1; // Try for smaller capacity
+            } else {
+                low = mid + 1; // Increase capacity
+            }
+        }
+
+        return ans; // Minimum capacity to ship within 'days'
+    }
+
+    private int finddays(int[] weights, int capacity) {
+        int days = 1; // Start with one day
+        int currentLoad = 0;
+
+        for (int weight : weights) {
+            // Check if the current weight can be added to the current load
+            if (currentLoad + weight > capacity) {
+                days++; // Start a new day
+                currentLoad = weight; // Reset current load
+            } else {
+                currentLoad += weight;
+            }
+        }
+
+        return days; // Total days needed
+    }
+}
+
+
+/*Lower bound = max(weights)
+(since the ship must carry the heaviest package in one go).
+
+Upper bound = sum(weights)
+(since you could ship all in one day if capacity was this big).
+
+4️⃣ Algorithm
+Set low = max(weights), high = sum(weights).
+
+While low <= high:
+
+mid = (low + high) / 2
+
+If canShip(weights, mid, days) is true,
+save mid as potential answer and move high = mid - 1.
+
+Else move low = mid + 1.
+
+Return the saved answer.*/
