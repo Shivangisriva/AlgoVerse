@@ -1,0 +1,27 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+     int low = 1 , high = Arrays.stream(nums).max().getAsInt();
+     int ans = 0;
+     while(low<=high)
+     {
+        int mid = low +(high - low)/2;
+        if(sumOfDivisors(nums, mid)<= threshold)
+        {
+          ans = mid;
+          high =  mid -1;
+        }
+        else
+        low = mid+1;
+     }
+     return ans;  
+    }
+    int sumOfDivisors(int arr[], int d)
+    {
+        int sum=0;
+        for(int i =0;i< arr.length;i++)
+        {
+            sum+=(arr[i] + d - 1) / d;//gives the ceil value
+        }
+        return sum;
+    }
+}
