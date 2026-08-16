@@ -17,7 +17,7 @@ class Solution {
                 count++;
                 i++;
             }
-            else if(arr[i] > arr[j])
+            else if(arr[i] > dep[j])
             {
                 count--;
                 j++;
