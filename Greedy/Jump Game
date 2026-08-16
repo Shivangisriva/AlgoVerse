@@ -1,0 +1,13 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int farthest = 0;
+        for (int i = 0; i<= farthest;i++)
+        { 
+            farthest = Math.max( farthest , i+nums[i]);
+            //gives the farthest place reachable from that index.
+             if(farthest >= nums.length-1)
+            return true;
+        }
+        return false;
+    }
+}
