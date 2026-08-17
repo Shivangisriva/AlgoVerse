@@ -1,0 +1,16 @@
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int left = 0, right = arr.length-1 , mid = 0;
+        while(left<=right)
+        {
+            mid = left+(right - left)/2;
+            int miss = arr[mid]-(mid+1); // number missing
+            if(miss<k)
+            left = mid+1;
+            else 
+            right = mid-1;
+        }
+        return left+k;//can be left+k or right +k
+        // as when left == right then the condition fails and then we find the respective number
+        }
+    }
