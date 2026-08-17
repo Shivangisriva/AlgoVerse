@@ -1,0 +1,79 @@
+class Solution {
+
+     static class Pair {
+         int node, wt;
+         Pair(int node, int wt) {
+             this.node = node;
+             this.wt = wt;
+         }
+     }
+
+     public List<Integer> shortestPath(int n, int m, int edges[][]) {
+
+         // Step 1: Build adjacency list
+         ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+         for (int i = 0; i <= n; i++)
+             adj.add(new ArrayList<>());
+
+         for (int e[] : edges) {
+             int u = e[0], v = e[1], w = e[2];
+             adj.get(u).add(new Pair(v, w));
+             adj.get(v).add(new Pair(u, w));
+         }
+
+         // Step 2: Dijkstra
+         int dist[] = new int[n + 1];
+         int parent[] = new int[n + 1];
+
+         Arrays.fill(dist, Integer.MAX_VALUE);
+         for (int i = 1; i <= n; i++)
+             parent[i] = i;
+
+         PriorityQueue<Pair> pq =
+             new PriorityQueue<>((a, b) -> a.wt - b.wt);
+
+         pq.add(new Pair(1, 0));
+         dist[1] = 0;
+
+         while (!pq.isEmpty()) {
+             Pair p = pq.poll();
+             int node = p.node;
+             int cost = p.wt;
+
+             for (Pair nbr : adj.get(node)) {
+                 int adjNode = nbr.node;
+                 int wt = nbr.wt;
+
+                 if (cost + wt < dist[adjNode]) {
+                     dist[adjNode] = cost + wt;
+                     parent[adjNode] = node;
+                     pq.add(new Pair(adjNode, dist[adjNode]));
+                 }
+             }
+         }
+
+         // Step 3: If no path exists
+         if (dist[n] == Integer.MAX_VALUE) {
+             return Arrays.asList(-1);
+         }
+
+         // Step 4: Reconstruct path from n → 1
+         List<Integer> path = new ArrayList<>();
+         int node = n;
+
+         while (parent[node] != node) {
+             path.add(node);
+             node = parent[node];
+         }
+         path.add(1);
+
+         Collections.reverse(path);
+
+         // Step 5: Add total weight at front
+         List<Integer> result = new ArrayList<>();
+         result.add(dist[n]);
+         result.addAll(path);
+
+         return result;
+     }
+ }
