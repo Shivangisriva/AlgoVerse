@@ -1,0 +1,13 @@
+Select id , count(*) as num
+from
+(Select requester_id as id
+from RequestAccepted
+
+Union all
+
+Select accepter_id as id
+from RequestAccepted) as ids
+
+group by id
+order by num desc
+limit 1
