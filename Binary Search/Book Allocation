@@ -1,0 +1,58 @@
+class Solution {
+
+    static boolean isPossible(int arr[], int students, int maxPages) {
+
+        int countStudents = 1;
+        int pages = 0;
+
+        for(int i = 0; i < arr.length; i++) {
+
+            if(pages + arr[i] > maxPages) {
+                countStudents++;
+                pages = arr[i];
+            }
+            else {
+                pages += arr[i];
+            }
+        }
+
+        return countStudents <= students;
+    }
+
+    public static int findPages(int[] arr, int k) {
+
+        int n = arr.length;
+
+        // More students than books
+        if(k > n)
+            return -1;
+
+        int low = 0;
+        int high = 0;
+
+        for(int x : arr) {
+            low = Math.max(low, x);
+            high += x;
+        }
+
+        int ans = -1;
+
+        while(low <= high) {
+
+            int mid = low + (high - low) / 2;
+
+            if(isPossible(arr, k, mid)) {
+
+                ans = mid;
+                high = mid - 1;
+
+            }
+            else {
+
+                low = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+}
