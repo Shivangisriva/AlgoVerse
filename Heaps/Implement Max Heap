@@ -1,0 +1,67 @@
+class maxHeap {
+ArrayList<Integer>list = new ArrayList<>();
+    // Constructor
+    public maxHeap() {
+        // Initialize your data members
+    }
+
+    public void push(int x) {
+        // Insert x into the heap
+        list.add(x);
+        heapUp(list.size()-1);
+        
+    }
+public void heapUp(int k)
+{
+    int parent = (k-1)/2;
+    while(k!=0 && list.get(k)>list.get(parent))
+    {
+        int temp = list.get(k);
+         list.set(k, list.get(parent));
+            list.set(parent, temp);
+        k =  parent;
+        parent= (k-1)/2;
+    }
+}
+    public void pop() {
+        // Remove the top (minimum) element
+        if(list.size() == 0) return;
+        
+        int last = list.get(list.size()-1);
+        list.set(0 , last);
+        list.remove(list.size()-1);
+        
+        heapifyDown(0);
+        
+    }
+    public void heapifyDown(int i)
+    {
+        int largest = i;
+        int left = 2*i+1;
+        int right = 2*i+2;
+        
+        if(left < list.size() && list.get(left)>list.get(largest))
+        largest = left;
+        
+        if(right < list.size() && list.get(right)>list.get(largest))
+        largest = right;
+        
+        if(largest != i)
+        {
+            int temp = list.get(i);
+           list.set(i, list.get(largest));
+            list.set(largest, temp);
+            heapifyDown(largest);
+        }
+    }
+    public int peek() {
+        // Return the top element or -1 if empty
+        if(list.size()==0) return -1;
+        return list.get(0);
+    }
+
+    public int size() {
+        // Return the number of elements in the heap
+        return list.size();
+    }
+}
