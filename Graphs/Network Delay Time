@@ -1,0 +1,61 @@
+class Solution {
+    class Pair
+    {     
+        int wt;
+        int node;
+        Pair(int wt , int node)
+        {
+            this.node = node;
+            this.wt = wt;
+        }
+    }
+    public int networkDelayTime(int[][] times, int n, int k) {
+        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
+        for(int i = 0 ; i <= n ; i++)
+        {
+            adj.add(new ArrayList<>());
+        }
+
+        for(int val[] :times)
+        {
+            adj.get(val[0]).add(new Pair(val[2] , val[1]));
+        }
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a,b) -> a.wt - b.wt);
+        pq.offer(new Pair(0 , k)); //{time , node};
+
+        int dist[] = new int[n+1];
+        Arrays.fill(dist , Integer.MAX_VALUE);
+
+        dist[k] = 0;
+
+        while(!pq.isEmpty())
+        {
+            Pair p = pq.poll();
+            int t = p.wt;
+            int no = p.node;
+
+            if (t > dist[no]) continue;
+
+            for(Pair it : adj.get(no))
+            {
+                int time = it.wt;
+                int nn = it.node;
+
+                if( time+t < dist[nn])
+                {
+                    dist[nn] = time +t;
+                    pq.offer(new Pair( dist[nn] , nn));
+                }
+            }
+        }
+        int ans = 0;
+for (int i = 1; i <= n; i++) {
+    if (dist[i] == Integer.MAX_VALUE) return -1;
+    ans = Math.max(ans, dist[i]);
+}
+return ans;
+
+
+    }
+}
